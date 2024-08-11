@@ -1,0 +1,128 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion / Inscription</title>
+    <script src="{% static 'authen/js/tailwind.js'%}"></script>
+    <style>
+         input[type="text"] , input[type="password"], input[type="email"], input[type="checkbox"] {
+          padding: 12px;
+          outline: none;
+          background: transparent;
+           
+         }
+         .bg-url {
+         background-image: url("FEMME.jpg");
+         background-repeat: no-repeat;
+         background-size: cover;
+         background-position: center;
+         min-height: 100vh;  
+     }
+    </style>
+</head>
+<body class="relative bg-url flex items-center justify-center">
+ 
+
+
+
+
+    <div class="screen_loader">
+        <!-- laoder -->
+    
+        <div class="loader fixed z-50 top-0 bg-white left-0 w-screen h-screen ">
+          <div class="loader-inner loader flex items-center justify-center h-screen">
+              <div class="loader-items flex items-center justify-center  h-screen loader">
+                  <img class="loader animate-bounce h-24 sm:h-96" src="{% static 'authen/compo imgs/logo-smal.png'%}" alt="">
+              </div>
+            </div>
+        </div>
+      
+        <script>
+          const loader = document.querySelector('.loader');
+          window.addEventListener('load', function() {
+           setTimeout(function(){
+            loader.classList.add('hidden');
+            loader.classList.add('tranlate-y-70'); 
+            loader.classList.add('transition-all');
+           },3000);
+          });
+        </script>
+    
+    </div>
+    
+    
+
+
+
+    <section class="bg-url w-full flex items-center justify-center">
+        <div class="lg:grid lg:min-h-screen lg:grid-cols-12 w-full bg-white  bg-opacity-90">
+          
+
+
+          <main class="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
+
+             
+
+            <div class="max-w-xl relative lg:max-w-3xl bg-white bg-opacity-70 p-8 rounded-md shadow-lg">
+                <a href="./index.html" class="absolute -top-4 -left-2 text-white bg-purple-600 hover:bg-purple-200 hover:text-gray-900 rounded-3xl text-sm p-1.5 ml-auto inline-flex items-center   " data-collapse-toggle="mobile-menu-2" data-collapse-target="body" aria-expanded="false" aria-label="Toggle navigation">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                    </svg>
+                  </a>
+              <h1 class="text-2xl font-bold text-gray-900 py-6">Connexion</h1>
+              {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                    </div>
+              {% endfor %}
+            </div>
+            {% endif %}
+                <form action="#" method="post" class="grid grid-cols-6 gap-6">
+                    {%csrf_token%}
+                    <div class="col-span-6">
+                        <label for="username_or_email_or_phone" class="block text-sm font-medium text-gray-700">Email / phone number</label>
+                        <input type="text" id="username_or_email_or_phone" name="username_or_email_or_phone" class="mt-1 w-full border-b-2 border-gray-200 bg-white text-sm text-gray-700">
+                    </div>
+                    <div class="col-span-6 sm:col-span-3">
+                        <label for="Password" class="block text-sm font-medium text-gray-700">Password</label>
+                        <input type="password" id="Password" name="password" class="mt-1 w-full border-b-2 border-gray-200 bg-white text-sm text-gray-700">
+                    </div>
+                    <div class="col-span-6">
+                        <p class="text-sm text-gray-500">
+                            By creating an account, you agree to our
+                            <a href="#" class="text-gray-700 underline">terms and conditions</a>
+                            and
+                            <a href="#" class="text-gray-700 underline">privacy policy</a>.
+                        </p>
+                    </div>
+                    <div class="col-span-6 sm:flex sm:items-center sm:gap-4">
+                        <button class="inline-block shrink-0 rounded-md border border-purple-600 bg-purple-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-purple-600 focus:outline-none focus:ring active:text-purple-500">
+                            Connexion
+                        </button>
+                        <p class="mt-4 text-sm text-gray-500 sm:mt-0">
+                            Pas encore de compte ?
+                            <a href="{% url 'register_user'%}" class="text-purple-700 underline">Inscription</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </main>
+
+
+
+            <section class="relative hidden lg:flex h-96 lg:col-span-5 lg:h-full xl:col-span-6">
+                <img
+                    alt="Logo"
+                    src="./compo imgs/logo-smal.png"
+                    class="absolute inset-0 h-100 sm:h-full  w-full object-cover opacity-80"
+                />
+            </section>
+
+        </div>
+    </section>
+</body>
+</html>
